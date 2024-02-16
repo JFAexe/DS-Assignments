@@ -2,3 +2,4 @@
 
 - [Перестановочный шифр](lab1_permutation)
 - [Полиалфавитный шифр Виженера](lab2_polyalphabetic)
+- [Гаммирование](lab3_gamming)
