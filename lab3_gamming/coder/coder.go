@@ -6,23 +6,23 @@ type GammingCoder struct {
 	key []byte
 }
 
-func New(key string) *GammingCoder {
+func New(key []byte) *GammingCoder {
 	return &GammingCoder{
-		key: []byte(key),
+		key: key,
 	}
 }
 
 func (c *GammingCoder) Encode(r io.Reader, w io.Writer) error {
-	msg, err := io.ReadAll(r)
+	input, err := io.ReadAll(r)
 	if err != nil {
 		return err
 	}
 
-	for i := 0; i < len(msg); i++ {
-		msg[i] ^= c.key[i%len(c.key)]
+	for i := 0; i < len(input); i++ {
+		input[i] ^= c.key[i%len(c.key)]
 	}
 
-	_, err = w.Write(msg)
+	_, err = w.Write(input)
 
 	return err
 }

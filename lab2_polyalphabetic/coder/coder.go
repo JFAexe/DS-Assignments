@@ -6,9 +6,9 @@ type PolyalphabeticCoder struct {
 	key []byte
 }
 
-func New(key string) *PolyalphabeticCoder {
+func New(key []byte) *PolyalphabeticCoder {
 	return &PolyalphabeticCoder{
-		key: []byte(key),
+		key: key,
 	}
 }
 

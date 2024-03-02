@@ -14,27 +14,37 @@ func main() {
 		optDecode  bool
 		optInPath  string
 		optOutPath string
+		optKeyPath string
 	)
 
 	flag.BoolVar(&optDecode, "d", false, "decode")
 	flag.StringVar(&optInPath, "i", "", "input filepath")
 	flag.StringVar(&optOutPath, "o", "", "output filepath")
+	flag.StringVar(&optKeyPath, "k", "", "key filepath")
 	flag.Parse()
 
-	key := strings.Join(flag.Args(), " ")
+	var (
+		key []byte
+		err error
+	)
+
+	if optKeyPath != "" {
+		if key, err = os.ReadFile(optKeyPath); err != nil {
+			exit(err)
+		}
+	} else {
+		key = []byte(strings.Join(flag.Args(), " "))
+	}
 
 	if len(key) < 1 {
 		exit("no key set")
 	}
-
 	var (
 		encoder   = coder.New(key)
 		operation = encoder.Encode
 
 		input  = os.Stdin
 		output = os.Stdout
-
-		err error
 	)
 
 	if optDecode {

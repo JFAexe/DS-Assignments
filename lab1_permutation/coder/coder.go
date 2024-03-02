@@ -12,9 +12,9 @@ type PermutationCoder struct {
 	order []int
 }
 
-func New(key string) *PermutationCoder {
+func New(key []byte) *PermutationCoder {
 	coder := &PermutationCoder{
-		key: []byte(key),
+		key: key,
 	}
 
 	coder.calculateOrder()
