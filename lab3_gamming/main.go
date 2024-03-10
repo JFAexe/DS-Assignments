@@ -41,8 +41,6 @@ func main() {
 	}
 
 	var (
-		encoder = coder.New(key)
-
 		input  = os.Stdin
 		output = os.Stdout
 	)
@@ -63,7 +61,7 @@ func main() {
 		defer output.Close()
 	}
 
-	if err = encoder.Encode(input, output); err != nil {
+	if err = coder.New(key).Encode(input, output); err != nil {
 		exit(err)
 	}
 }

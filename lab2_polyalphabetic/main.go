@@ -36,6 +36,10 @@ func main() {
 		key = []byte(strings.Join(flag.Args(), " "))
 	}
 
+	if len(key) < 1 {
+		exit("no key set")
+	}
+
 	var (
 		encoder   = coder.New(key)
 		operation = encoder.Encode

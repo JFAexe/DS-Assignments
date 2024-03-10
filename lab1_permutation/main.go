@@ -39,6 +39,7 @@ func main() {
 	if len(key) < 1 {
 		exit("no key set")
 	}
+
 	var (
 		encoder   = coder.New(key)
 		operation = encoder.Encode
